@@ -47,18 +47,16 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+#add_message_files(
+# FILES
+#  Num.msg
+#)
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+ #add_service_files(
+ #  FILES
+ # AddTwoInts.srv
+ #)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -68,10 +66,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+#generate_messages(
+#  DEPENDENCIES
+#  std_msgs
+#)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -204,5 +202,15 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-catkin_workspace()
-catkin_install_python(PROGRAMS scripts/talker.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION} )
+
+find_package(catkin REQUIRED COMPONENTS
+   roscpp
+   rospy
+   std_msgs
+   message_generation
+)
+
+catkin_install_python(PROGRAMS scripts/talker.py scripts/listener.py 
+scripts/talker_int.py scripts/listener_int.py scripts/talker_char.py scripts/listener_char.py scripts/talker_bool.py scripts/listener_bool.py 
+DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
